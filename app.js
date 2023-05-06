@@ -67,6 +67,8 @@ app.get('/security-qa', (req, res) => {
 });
 
 app.get('/personal-info', (req, res) => {
+    // 顯示時間 + IP
+    console.log(`[${new Date().toLocaleString()}] ${req.ip}: Capture the flag !!!`);
     res.sendFile(__dirname + '/views/personalInfo.html');
 });
 
