@@ -108,11 +108,13 @@
     </form>
 
     <script>
+        let answerFailCount = 0;
+
         document.querySelector('form').addEventListener('submit', (e) => {
-            e.preventDefault()
-            const birthplace = document.querySelector('#birthplace').value
-            const petName = document.querySelector('#petName').value
-            const hairStyle = document.querySelector('#hairStyle').value
+            e.preventDefault();
+            const birthplace = document.querySelector('#birthplace').value;
+            const petName = document.querySelector('#petName').value;
+            const hairStyle = document.querySelector('#hairStyle').value;
             fetch('/qa')
                 .then(res => res.json())
                 .then(async data => {
@@ -122,7 +124,13 @@
                         alert(`您的密碼為：${infoData.password}，請記得妥善保管密碼`);
                         location.href = '/login';
                     } else {
-                        alert('安全性問題答案錯誤');
+                        answerFailCount++;
+                        if (answerFailCount === 3) {
+                            alert('回答錯誤答案次數過多，已寄送警告信件給管理員');
+                            location.href = '/mission-failed/?errorMsg=目標對象已經知道你嘗試取得帳號資料了，任務失敗';
+                            return;
+                        }
+                        alert(`安全性問題答案錯誤，還有 ${3 - answerFailCount} 次機會`);
                     }
                 });
         });
