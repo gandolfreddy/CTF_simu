@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta
+        http-equiv="X-UA-Compatible"
+        content="IE=edge"
+    >
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            background-color: #f5f5f5;
+            font-family: "comic sans ms", sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            width: 100%;
+            text-align: center;
+        }
+
+        input {
+            width: 20%;
+            margin: 5px 0px;
+            padding: 5px;
+        }
+
+        input[type="button"] {
+            background-color: #606afa;
+            color: white;
+            cursor: pointer;
+            font-family: monospace;
+        }
+
+        input[type="button"]:hover {
+            background-color: #af4c78;
+        }
+
+        input[type="submit"] {
+            background-color: #606afa;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #af4c78;
+        }
+
+    </style>
+    <title>安全性問題</title>
+</head>
+
+<body>
+    <h1>安全性問題</h1>
+    <form
+        action=""
+        method="post"
+    >
+        <label for="birthplace">請問您的出生地：</label>
+        <input
+            type="text"
+            name="birthplace"
+            id="birthplace"
+        >
+        <br>
+        <label for="petName">請問您的寵物名字：</label>
+        <input
+            type="text"
+            name="petName"
+            id="petName"
+        >
+        <br>
+        <label for="hairStyle">請問您的髮型（長或短髮）：</label>
+        <input
+            type="text"
+            name="hairStyle"
+            id="hairStyle"
+        >
+        <br>
+        <input
+            type="submit"
+            value="確定"
+        >
+        <input
+            type="button"
+            value="回到登入頁面"
+            onclick="location.href='/login'"
+        >
+    </form>
+
+    <script>
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault()
+            const birthplace = document.querySelector('#birthplace').value
+            const petName = document.querySelector('#petName').value
+            const hairStyle = document.querySelector('#hairStyle').value
+            fetch('/qa')
+                .then(res => res.json())
+                .then(async data => {
+                    const response = await fetch('/info');
+                    const infoData = await response.json();
+                    if (birthplace === data.a1 && petName === data.a2 && hairStyle === data.a3) {
+                        alert(`您的密碼為：${infoData.password}，請記得妥善保管密碼`);
+                        location.href = '/login';
+                    } else {
+                        alert('安全性問題答案錯誤');
+                    }
+                });
+        });
+    </script>
+
+</body>
+
+</html>

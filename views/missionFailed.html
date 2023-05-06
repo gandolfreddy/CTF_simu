@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta
+        http-equiv="X-UA-Compatible"
+        content="IE=edge"
+    >
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            background-color: #f5f5f5;
+            font-family: "comic sans ms", sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            margin: 0;
+            padding: 20px 0;
+            color: #af5b4c;
+        }
+
+        p {
+            text-align: center;
+            font-size: 24px;
+            margin: 0;
+            padding: 20px 0;
+        }
+
+        input {
+            width: 20%;
+            margin: 5px 0px;
+            padding: 5px;
+            font-family: monospace;
+        }
+
+        input[type="button"] {
+            background-color: #c68d2a;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="button"]:hover {
+            background-color: #af5b4c;
+        }
+
+    </style>
+    <title>任務失敗</title>
+</head>
+
+<body>
+    <h1>任務失敗</h1>
+    <p id="error-msg"></p>
+    <input
+        type="button"
+        value="繼續挑戰"
+        onclick="location.href='/login'"
+    >
+
+    <script>
+        // 使用 query string 傳遞錯誤訊息
+        const urlParams = new URLSearchParams(window.location.search);
+        const errorMsg = urlParams.get('errorMsg');
+        document.getElementById('error-msg').innerText = errorMsg;
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta
+        http-equiv="X-UA-Compatible"
+        content="IE=edge"
+    >
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <style>
+        /* 加入 CSS 美化此頁面 */
+
+        body {
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            background-color: #f5f5f5;
+            font-family: "comic sans ms", sans-serif;
+        }
+
+        nav {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+
+            border-bottom: 1px solid grey;
+        }
+
+        nav>div>input {
+            margin: 0 10px;
+            border: none;
+            color: grey;
+            font-size: 16px;
+        }
+
+        #article {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #article>div {
+            width: 80%;
+            margin: 10px 0px;
+            padding: 10px;
+            border: 1px solid grey;
+            border-radius: 6px;
+        }
+
+        #article>div>h2 {
+            margin: 0;
+            border-bottom: 1px solid rgb(172, 163, 163);
+        }
+
+        #article>div>p:nth-child(2) {
+            margin: 0;
+            color: grey;
+            font-size: 12px;
+        }
+
+        #aboutMe {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        img {
+            border-radius: 5px;
+            margin: 10px 0px;
+        }
+
+        th,
+        td {
+            border-bottom: 1px solid grey;
+            padding: 5px;
+        }
+
+    </style>
+    <title>個人部落格</title>
+</head>
+
+<body>
+    <!-- 此為個人部落格頁面 -->
+    <!-- 
+        需包含內容：
+            1. 導覽列，包含：
+                1.1. 「Gandolfreddy 的個人部落格」標題。
+                1.2. 文章按鈕，若按下則顯示 #article 區塊，並隱藏 #aboutMe 區塊
+                1.3. 關於我按鈕，若按下則顯示 #aboutMe 區塊，並隱藏 #article 區塊
+            2. 文章區塊（#article 區塊）：
+                2.1. 大標題：文章
+                2.2. 各文章列表，其中區塊包含：
+                    2.2.1. 文章標題
+                    2.2.2. 文章建立時間
+                    2.2.3. 文章內容
+            3. 關於我區塊（#aboutMe 區塊）：
+                3.1. 大標題：關於我
+                3.2. 姓名
+                3.3. 職業
+                3.4. 興趣
+                3.5. 自我介紹
+                    3.5.1. 一段文字
+                    3.5.2. 一張照片
+                3.6 聯絡資訊
+                    3.6.1. 電話
+                    3.6.2. Email
+     -->
+    <nav>
+        <h1>Gandolfreddy 的個人部落格</h1>
+        <div>
+            <input
+                id="articleButton"
+                type="button"
+                value="文章"
+                onclick=showArticle()
+            >
+            <input
+                id="aboutMeButton"
+                type="button"
+                value="關於我"
+                onclick=showAboutMe()
+            >
+        </div>
+    </nav>
+    <div id="article">
+        <h1>所有文章</h1>
+        <!-- 文章格式
+        <div>
+            <h2>文章標題</h2>
+            <p>文章建立時間</p>
+            <p>文章內容</p>
+        </div>
+        -->
+    </div>
+    <div id="aboutMe">
+        <h1>關於我</h1>
+        <img
+            src="/images/magic.gif"
+            alt="自我介紹照片"
+        >
+        <table>
+            <tr>
+                <th>我的姓名</th>
+                <td>達米王</td>
+            </tr>
+            <tr>
+                <th>我的職業</th>
+                <td>資訊老師、軟體工程師、武術教練</td>
+            </tr>
+            <tr>
+                <th>我的興趣</th>
+                <td>開發工具、讀冊</td>
+            </tr>
+            <tr>
+                <th>自我簡介</th>
+                <td>我來自高雄，是一個 life-long student。</td>
+            </tr>
+            <tr>
+                <th>聯絡電話</th>
+                <td>0970889221</td>
+            </tr>
+            <tr>
+                <th>電子信箱</th>
+                <td>dummy.wang@dummy.com</td>
+            </tr>
+        </table>
+    </div>
+    <script>
+        function showArticle() {
+            document.getElementById("article").style.display = "flex";
+            document.getElementById("aboutMe").style.display = "none";
+        }
+        function showAboutMe() {
+            document.getElementById("article").style.display = "none";
+            document.getElementById("aboutMe").style.display = "flex";
+        }
+
+        // 產生多篇假文章
+        const articles = [
+            {
+                title: "探訪奧地利的神秘湖泊",
+                time: "2023-04-22 08:30:12",
+                content: "在奧地利的哈爾施塔特區，我跟我的愛貓致狗發現了一片美麗的湖泊，被群山環繞，湖水清澈見底…（略）"
+            },
+            {
+                title: "巴黎的夜，戀愛的城市",
+                time: "2023-05-18 21:15:36",
+                content: "漫步在巴黎的夜晚，艾菲爾鐵塔閃閃發光，街頭藝術家的歌聲與笑語交織成一幅美麗的畫卷…（略）"
+            },
+            {
+                title: "舊金山的纜車之旅",
+                time: "2023-06-08 16:24:55",
+                content: "舊金山著名的纜車帶我們穿越陡峭的街道，俯瞰整個城市的景色，彷彿回到了過去…（略）"
+            },
+            {
+                title: "悠遊澳洲的大堡礁",
+                time: "2023-07-25 10:45:38",
+                content: "在澳洲的大堡礁，我跟我太太帶著我的愛犬麥麥潛入了海底世界，探索著珊瑚礁與繽紛魚群的奇幻世界，令人難忘…（略）"
+            },
+            {
+                title: "荷蘭風車村之旅",
+                time: "2023-08-12 15:00:27",
+                content: "遊覽荷蘭風車村，欣賞古老風車的迷人風景，體驗當地的傳統手工藝品製作…（略）"
+            },
+            {
+                title: "曼谷的夜市美食攻略",
+                time: "2023-09-09 20:30:05",
+                content: "曼谷的夜市充滿了各式各樣的美食，從熱騰騰的燒烤到冰涼的椰子汁，滿足所有的味蕾…（略）"
+            },
+            {
+                title: "尋找紐西蘭的霍比特村",
+                time: "2023-10-17 11:05:48",
+                content: "在紐西蘭的北島，我跟我太太帶著我們的愛犬麥麥與愛貓致狗，來到了霍比特村的拍攝場景，仿佛置身於電影的世界…（略）"
+            },
+            {
+                title: "探索日本的古城",
+                time: "2023-11-23 14:20:33",
+                content: "在日本的京都，我們參觀了許多歷史悠久的古城，感受著古老的文化與建築…（略）"
+            },
+            {
+                title: "遊覽美國的大峽谷",
+                time: "2023-12-01 09:10:22",
+                content: "在美國的大峽谷，我們乘坐直升機鳥瞰了大峽谷的全景，壯闊的景色令人驚嘆…（略）"
+            },
+            {
+                title: "探索南極的奇幻世界",
+                time: "2024-01-05 13:40:17",
+                content: "在南極的冰川上，我們看到了企鵝的家園，還有許多可愛的海豹，感受到大自然的力量…（略）"
+            }
+        ];
+        const article = document.getElementById("article");
+        for (let i = 0; i < 10; i++) {
+            const div = document.createElement("div");
+            const h2 = document.createElement("h2");
+            const p1 = document.createElement("p");
+            const p2 = document.createElement("p");
+            h2.innerText = articles[i].title;
+            p1.innerText = articles[i].time;
+            p2.innerText = articles[i].content;
+            div.appendChild(h2);
+            div.appendChild(p1);
+            div.appendChild(p2);
+            article.appendChild(div);
+        }
+
+        // 預設顯示文章
+        showArticle();
+    </script>
+</body>
+
+</html>
