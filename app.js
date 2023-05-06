@@ -15,6 +15,7 @@
 const express = require('express');
 const app = express();
 const port = 3002;
+let failCount = 0;
 
 app.use(express.static('public'));
 
@@ -52,6 +53,8 @@ app.get('/qa', (req, res) => {
 });
 
 app.get('/mission-failed', (req, res) => {
+    failCount++;
+    console.log(`目前已失敗次數: ${failCount}`);
     res.sendFile(__dirname + '/views/missionFailed.html');
 });
 
