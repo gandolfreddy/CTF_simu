@@ -98,8 +98,14 @@
     </form>
 
     <script>
+        let loginFailCount = 0;
         document.querySelector('form').addEventListener('submit', (e) => {
             e.preventDefault();
+            if (loginFailCount === 2) {
+                alert('登入失敗次數過多，已寄送警告信件給管理員，\n請等待 1 小時後才能再次登入');
+                location.href = '/mission-failed/?errorMsg=目標對象已經知道你嘗試登入了，任務失敗';
+                return;
+            }
             const account = document.querySelector('#account').value;
             const password = document.querySelector('#password').value;
             if (account === '' || password === '') {
@@ -111,7 +117,8 @@
                         if (account === data.account && password === data.password) {
                             location.href = '/personal-info'
                         } else {
-                            alert('帳號或密碼錯誤');
+                            loginFailCount++;
+                            alert(`帳號或密碼錯誤，還有 ${3 - loginFailCount} 次機會`);
                         }
                     })
             }
