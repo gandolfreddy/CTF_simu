@@ -82,7 +82,7 @@
             id="birthplace"
         >
         <br>
-        <label for="petName">請問您的寵物名字：</label>
+        <label for="petName">請問您養過哪些種類的寵物：</label>
         <input
             type="text"
             name="petName"
@@ -121,8 +121,10 @@
                     const response = await fetch('/info');
                     const infoData = await response.json();
                     if (birthplace === data.a1 && petName === data.a2 && hairStyle === data.a3) {
-                        alert(`您的密碼為：${infoData.password}，請記得妥善保管密碼`);
-                        location.href = '/login';
+                        navigator.clipboard.writeText(btoa(infoData.password)).then(() => {
+                            alert(`您的密碼為 ${btoa(infoData.password)}\n此密碼為以 base64 格式編碼的字串\n請記得妥善保管密碼\n\n已將 ${btoa(infoData.password)} 複製到剪貼簿`);
+                            location.href = '/login';
+                        });
                     } else {
                         answerFailCount++;
                         if (answerFailCount === 3) {

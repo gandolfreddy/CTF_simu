@@ -39,7 +39,7 @@ app.get('/info', (req, res) => {
     res.send({
         name: 'Freddy',
         account: 'gandolfreddy',
-        password: 'a2s3d4j56k7l89',
+        password: 'QvPb3iEoxnFVw;zi',
         email: "dummy.wang@dummy.com",
     });
 });
@@ -47,7 +47,7 @@ app.get('/info', (req, res) => {
 app.get('/qa', (req, res) => {
     res.send({
         a1: 'Kaohsiung',
-        a2: '麥麥、致狗',
+        a2: '貓、狗',
         a3: '長髮',
     });
 });
