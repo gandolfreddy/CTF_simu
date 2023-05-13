@@ -47,7 +47,7 @@ app.get('/info', (req, res) => {
 app.get('/qa', (req, res) => {
     res.send({
         a1: 'Kaohsiung',
-        a2: '貓、狗',
+        a2: '貓和狗',
         a3: '長髮',
     });
 });
